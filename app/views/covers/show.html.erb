@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="span10 offset1">
+    <div id="myCarousel" class="carousel slide">
+      <ol class="carousel-indicators">
+        <% (0..@files.length).each do |i| %>
+          <li data-target="#myCarousel" data-slide-to="<%= i %>" class=""></li>
+        <% end %>
+      </ol>
+      <div class="carousel-inner">
+        <% @files.each do |cover| %>
+          <div class="item <%= 'active' if cover == @files.first %>">
+            <div style="padding-bottom:60px;text-align:center">
+              <div style="padding-right: 42px;border-right: solid 1px #ccc;display:inline-block">
+                <%= render "cover", cover: @master %>
+              </div>
+              <div style="padding-left: 40px;display:inline-block">
+                <%= render "cover", cover: cover %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+  </div>
+</div>

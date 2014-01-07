@@ -1,0 +1,1 @@
+rvm use ruby-`cat ~/dev/cover_test/.ruby-version`@cover_test_rails --create

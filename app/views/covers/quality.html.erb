@@ -1,0 +1,10 @@
+<div class="row">
+  <%= @files.each do | master, comparison| %>
+    <div class="span2 offset4">
+      <%= render "cover", cover: master %>
+    </div>
+    <div class="span2">
+      <%= render "cover", cover: comparison %>
+    </div>
+  <% end %>
+</div>
