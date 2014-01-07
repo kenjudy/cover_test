@@ -35,6 +35,10 @@ end
 gem "twitter-bootstrap-rails"
 gem 'masonry-rails'
 
+group :production do
+  gem 'mysql2'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
