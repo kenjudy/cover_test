@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def master_filesize
-    @master_filesize ||= filesize(@master)
+    @original_filesize ||= filesize(@original)
   end
   def filesize(filename)
     '%.2f' % (File.size("#{Rails.root}/public/images/covers/#{filename}").to_f / 2**20 * 100)

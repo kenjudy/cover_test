@@ -1,23 +1,40 @@
 class CoversController < ApplicationController
 
   def index
-    @files = Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /\d{13,13}_lg\.jpg/ }
+    @files = original_covers
   end
 
 
   def show
-    @master = filename_from_isbn(params['isbn13'])
-    @files = Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /#{params['isbn13']}_\d\d\d_lg\.jpg/ }
+    @original = filename_from_isbn(params['isbn13'])
+    @files = new_files({isbn13: params['isbn13']})
   end
   
   def quality
     @quality = format('%03d', params["quality"])
-    masters = Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /\d{13,13}_lg\.jpg$/ }
-    comparisons = Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /\d{13,13}_#{@quality}_lg\.jpg/ }
+    originals = original_covers
+    comparisons = new_files({quality: @quality})
     @files = {}
-    masters.each do |master| 
-      comparison = filename_from_isbn(isbn_from_filename(master), @quality)
-      @files[master] = comparison if comparisons.include?(comparison)
+    
+    originals.each do |original| 
+      comparison = filename_from_isbn(isbn_from_filename(original), @quality)
+      @files[original] = comparison if comparisons.include?(comparison)
     end
+  end
+  
+  def exceptions
+    
+  end
+  
+  private
+  
+  def original_covers
+    Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /\d{13,13}_lg\.jpg/ }
+  end
+  
+  def new_files(args = {})
+    quality_match = args[:quality] || /\d\d\d/
+    isbn_match = args[:isbn13] || /\d{13,13}/
+    Dir.entries("#{Rails.root}/public/images/covers").keep_if{ |file| file =~ /#{isbn_match}_#{quality_match}_lg\.jpg/ }
   end
 end

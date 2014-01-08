@@ -6,6 +6,7 @@ CoverTest::Application.routes.draw do
   root 'covers#index'
   get 'covers/:isbn13' => 'covers#show', as: 'cover'
   get 'quality/:quality' => 'covers#quality', as: 'quality'
+  get 'covers/exceptions' => 'covers#exceptions', as: 'exceptions'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
