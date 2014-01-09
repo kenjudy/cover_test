@@ -1,7 +1,5 @@
 <div class="row">
-  <div class="span2">
-    <%= render "sidebar" %>
-  </div>
+  <%= render "sidebar" %>
   <div class="span10">
     <div id="myCarousel" class="carousel slide">
       <ol class="carousel-indicators">
@@ -11,16 +9,14 @@
       </ol>
       <div class="carousel-inner">
         <% @files.each do |cover| %>
-          <div class="item <%= 'active' if cover == @files.first %>">
-            <div style="padding-bottom:60px;text-align:center">
-              <div style="padding-right: 42px;border-right: solid 1px #ccc;display:inline-block">
+          <div class="item <%= 'active' if cover == @files.last %>">
+              <div class="original">
                 <%= render "cover", cover: @original %>
               </div>
-              <div style="padding-left: 40px;display:inline-block">
+              <div class="new-file">
                 <%= render "cover", cover: cover %>
               </div>
             </div>
-          </div>
         <% end %>
       </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>

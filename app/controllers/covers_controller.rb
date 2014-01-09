@@ -8,6 +8,7 @@ class CoversController < ApplicationController
 
 
   def show
+    @isbn13 = params['isbn13']
     @original = filename_from_isbn(params['isbn13'])
     @files = new_files({isbn13: params['isbn13']})
   end

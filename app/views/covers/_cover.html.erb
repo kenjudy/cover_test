@@ -1,2 +1,2 @@
 <%= link_to(image_tag("covers/#{cover}"), cover_path(isbn_from_filename(cover))) %>
-<p><%= quality_from_filename(cover) || 'original' %> <%= image_dimensions(cover, "| ") %> | <strong><%= filesize(cover) %> KB</strong></p>
+<p><%= quality_from_filename(cover) || 'original' %><span class="hidden-phone"> <%= image_dimensions(cover, "| ") %> </span>| <strong><%= filesize(cover) %> KB</strong></p>

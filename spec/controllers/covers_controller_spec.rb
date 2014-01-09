@@ -15,6 +15,7 @@ describe CoversController do
     context "without image filter" do
       before { get :show, isbn13: '9781231231230' }
     
+      it { expect(assigns(:isbn13)).to eq('9781231231230') }
       it { expect(assigns(:original)).to eq('cvr9781231231230_9781231231230_lg.jpg') }
       it { expect(assigns(:files)).to eq(['cvr9781231231230_9781231231230_100_lg.jpg']) }
       it { expect(assigns(:filter)).to be_nil }

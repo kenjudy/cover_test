@@ -28,4 +28,12 @@ module ApplicationHelper
     rescue
     end
   end
+  
+  def filter_label(filter, nil_case = "None")
+    filter && filter != "no_op" ? filter.humanize : nil_case
+  end
+  
+  def is_current_filter(filter)
+    filter == @filter || (filter == "no_op" && @filter.nil?)
+  end
 end
