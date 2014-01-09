@@ -1,10 +1,19 @@
 <div class="row">
-  <%= @files.each do | master, comparison| %>
-    <div class="span2 offset4">
-      <%= render "cover", cover: master %>
-    </div>
-    <div class="span2">
-      <%= render "cover", cover: comparison %>
-    </div>
-  <% end %>
+  <div class="span3">
+    <%= render "sidebar" %>
+  </div>
+  <div class="span9">
+    <table>
+      <% @files.each do | original, new_file| %>
+      <tr>
+        <td>
+          <%= render "cover", cover: original %>
+        </td>
+        <td>
+          <%= render "cover", cover: new_file %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

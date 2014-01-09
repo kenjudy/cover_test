@@ -12,7 +12,36 @@ class BlitlineTest
   @path = CONFIG.onix.cover_image_drop_path
   @blitline_application_id = "3IdSIOrVrQwac42Wb5vmlbQ"
   
-  @blitline_qualities = [50, 60, 65, 70, 75, 80, 90, 100]
+  @blitline_tests = [
+    {quality: 100, function: "despeckle"},
+    {quality: 100, function: "auto_enhance"},
+    {quality: 100, function: "enhance"},
+    {quality: 100, function: "sharpen"},
+    {quality: 100, function: "unsharp_mask"},
+    {quality: 100, function: "no_op"},
+
+    {quality: 90, function: "despeckle"},
+    {quality: 90, function: "auto_enhance"},
+    {quality: 90, function: "enhance"},
+    {quality: 90, function: "sharpen"},
+    {quality: 90, function: "unsharp_mask"},
+    {quality: 90, function: "no_op"},
+
+    {quality: 80, function: "despeckle"},
+    {quality: 80, function: "auto_enhance"},
+    {quality: 80, function: "enhance"},
+    {quality: 80, function: "sharpen"},
+    {quality: 80, function: "unsharp_mask"},
+    {quality: 80, function: "no_op"},
+
+    {quality: 75, function: "despeckle"},
+    {quality: 75, function: "auto_enhance"},
+    {quality: 75, function: "enhance"},
+    {quality: 75, function: "sharpen"},
+    {quality: 75, function: "unsharp_mask"},
+    {quality: 75, function: "no_op"},
+    
+  ]
   
   @cover_image_file_types = [ { suffix: "_lg", max_dimension: 350 } ]
 
@@ -22,71 +51,79 @@ class BlitlineTest
       process_cover_image(image_filename) if image_filename
     else
       image_filenames = Dir.entries(@path).keep_if { |filename| filename =~ /\.jpg/ }
-      image_filenames.each { |image_filename| process_cover_image(image_filename); sleep(30) }
+      image_filenames.each { |image_filename| process_cover_image(image_filename); sleep(5) }
     end
   end
 
   def self.process_cover_image(image_filename)
     local_high_res_image_path = "#{@path}/#{image_filename}"
 
-    s3_high_res_file_name = new_file_name(image_filename, "_hr")
-    s3_high_res_image_path = "spikes/blitline-image-quality/#{s3_high_res_file_name}"
-    s3_high_res_url = "http://#{CONFIG.s3.bucket}.s3.amazonaws.com/#{s3_high_res_image_path}"
-
     # assume the file exists locally
-    move_to_s3_strategy = UploadToCdnStrategy::MoveToS3.new
-    move_to_s3_strategy.process_file(s3_high_res_image_path, local_high_res_image_path)
-
-    image_exif = EXIFR::JPEG.new(open(s3_high_res_url))
+    # move_to_s3_strategy = UploadToCdnStrategy::MoveToS3.new
+    # move_to_s3_strategy.process_file(s3_high_res_image_path(image_filename), local_high_res_image_path)
 
     # assume the file exists on S3
-    blitline_resize_hash = {
-                              "application_id" => @blitline_application_id,
-                              "src" => s3_high_res_url,
-                              "postback_url" => CONFIG.onix.blitline_postback_url,
-                              "extended_metadata" => true,
-                              "functions" => generate_blitline_functions(@cover_image_file_types, image_exif.width, image_exif.height, image_filename, CONFIG.s3.bucket)
-                            }
-    puts blitline_resize_hash.inspect
     blitline_service = Blitline.new
-    blitline_service.add_job_via_hash(blitline_resize_hash)
-    blitline_service.post_jobs
+    blitline_service.add_job_via_hash(blitline_resize_hash(image_filename))
+    puts blitline_service.post_jobs
   end
+  
+  def self.s3_high_res_image_path(image_filename)
+    "spikes/blitline-image-quality/#{new_file_name(image_filename, "_hr")}"
+  end
+  
+  def self.s3_high_res_url(image_filename)
+    "http://#{CONFIG.s3.bucket}.s3.amazonaws.com/#{s3_high_res_image_path(image_filename)}"
+  end
+  
+  def self.blitline_resize_hash(image_filename)
+    return {
+      "application_id" => @blitline_application_id,
+      "src" => s3_high_res_url(image_filename),
+      "postback_url" => CONFIG.onix.blitline_postback_url,
+      "extended_metadata" => true,
+      "functions" => generate_blitline_functions(@cover_image_file_types, image_filename, CONFIG.s3.bucket)
+    }
+   end
 
-  def self.generate_blitline_functions(cover_image_file_types, original_width, original_height, image_filename, bucket)
-    file_type = @cover_image_file_types.first
-    (width, height) = find_new_image_size(original_width, original_height, file_type[:max_dimension])
-    @blitline_qualities.collect do | quality |
-      generate_blitline_resize_to_fill_function(width, height, new_file_name(image_filename, "_#{format('%03d', quality)}#{file_type[:suffix]}"), bucket, quality)
+  def self.generate_blitline_functions(cover_image_file_types, image_filename, bucket)
+    image_exif = EXIFR::JPEG.new(open(s3_high_res_url(image_filename)))
+    file_type = cover_image_file_types.first
+    constraining_dimension = image_exif.width > image_exif.height ? "width" : "height"
+    
+    @blitline_tests.collect do | test |
+      generate_blitline_resize_to_fit_function(constraining_dimension, file_type[:max_dimension], new_file_name(image_filename, "_#{format('%03d', test[:quality])}#{file_type[:suffix]}"), bucket, test[:function], test[:quality])
     end
   end
    
-  def self.generate_blitline_resize_to_fill_function(width, height, output_filename, bucket, quality)
+  def self.generate_blitline_resize_to_fit_function(constraining_dimension, max_dimension, output_filename, bucket, function, quality)
     {
-      "name" => "resize_to_fill",
+      "name" => "resample",
       "params" => {
-        "width" => width,
-        "height" => height
+          "density" => 72.0
       },
-      "save" => {
-        "image_identifier" => output_filename,
-        "s3_destination" => {
-          "bucket" => bucket,
-          "key" => "spikes/blitline-image-quality/#{output_filename}"
+      "functions" => [
+        "name" => "resize_to_fit",
+        "params" => {
+           constraining_dimension => max_dimension
         },
-        "quality" => quality
-      }
+        "functions" => [
+          {
+            "name" => function,
+            "save" => {
+              "quality" => quality,
+              "image_identifier" => output_filename,
+              "s3_destination" => {
+                "bucket" => bucket,
+                "key" => "spikes/blitline-image-quality/#{function + '_' unless function == "no_op"}#{output_filename}"
+              }
+            }
+          }
+        ]
+      ]
     }
   end
-
-  def self.find_new_image_size(width, height, max_dimension)
-    width > height ? [max_dimension, calculate_new_dimension(height, width, max_dimension)] : [calculate_new_dimension(width, height, max_dimension), max_dimension]
-  end
-  
-  def self.calculate_new_dimension(top, bottom, max_dimension)
-    (top.to_f / bottom.to_f * max_dimension).to_i
-  end
-  
+    
   # TO DO assume for now original file name will be 12345.jpg, NOT cvr12345.jpg
   def self.new_file_name(original_filename, filename_addition)
     original_filename.gsub(/(\d+)\.jpg/, "cvr\\1_\\1#{filename_addition}.jpg")

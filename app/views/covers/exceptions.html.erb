@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="span10 offset1">
+    <div class="alert alert-info">
+      <strong><%= @files.length %></strong> | [<%= @files.map{ |f| isbn_from_filename(f)}.join(", ")%>]</div>
+    </div>
+</div>
+<% @files.each do |cover| %>
+  <div class="row">
+    <div class="span2 offset4">
+      <%= render "cover", cover: cover %>
+      <p><%= isbn_from_filename(cover) %></p>
+    </div>
+  </div>
+<% end %>

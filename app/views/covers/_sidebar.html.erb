@@ -1,0 +1,6 @@
+<ul class="nav nav-pills nav-stacked affix">
+  <h3>Filters</h3>
+  <% image_filters.each do |filter| %>
+    <li class="<%= 'active' if filter == @filter || (filter == "no_op" && @filter.nil?) %>" ><%= link_to(filter, @quality ? quality_path(filter: filter) : cover_path(filter: filter)) %></li>
+  <% end %>
+</ul>
