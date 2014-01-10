@@ -22,6 +22,12 @@
 #= require masonry/jquery.imagesloaded.min
 #= require masonry/jquery.infinitescroll.min
 #= require masonry/modernizr-transitions
+#= require jquery.lazyload
 
 $(window).load ->
-  $("#masonry-container").masonry()
+  if $("#masonry-container").length
+    $("#masonry-container").masonry
+      "isFitWidth": true
+      "itemSelector" : ".box > div"
+      "columnWidth" : ".box > div"
+    

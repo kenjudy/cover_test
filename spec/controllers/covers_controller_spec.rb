@@ -8,7 +8,7 @@ describe CoversController do
   context "index" do
     before { get :index }
     
-    it { expect(assigns(:files)).to eq(['cvr9781231231230_9781231231230_lg.jpg', 'cvr9781231231231_9781231231231_lg.jpg']) }
+    it { expect(assigns(:files)).to eq(['cvr9781231231230_9781231231230_100_lg.jpg', 'cvr9781231231231_9781231231231_100_lg.jpg']) }
   end
   
   context "show" do

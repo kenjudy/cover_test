@@ -59,8 +59,8 @@ class BlitlineTest
     local_high_res_image_path = "#{@path}/#{image_filename}"
 
     # assume the file exists locally
-    # move_to_s3_strategy = UploadToCdnStrategy::MoveToS3.new
-    # move_to_s3_strategy.process_file(s3_high_res_image_path(image_filename), local_high_res_image_path)
+    move_to_s3_strategy = UploadToCdnStrategy::MoveToS3.new
+    move_to_s3_strategy.process_file(s3_high_res_image_path(image_filename), local_high_res_image_path)
 
     # assume the file exists on S3
     blitline_service = Blitline.new

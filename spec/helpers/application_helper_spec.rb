@@ -22,15 +22,15 @@ describe ApplicationHelper do
   context "image_dimensions" do
     before { EXIFR::JPEG.stub(new: double(EXIFR::JPEG, width: 250, height: 300)) }
     subject { image_dimensions(filename)}
-    it { should == "250 x 300"}
-    context "delim" do
-      subject { image_dimensions(filename, ", ")}
-      it { should == ", 250 x 300" }
-    end
-    context "no exifr" do
+    it { should == {width: 250, height: 300}}
+     context "no exifr" do
       before { EXIFR::JPEG.stub(:new).and_raise(StandardError) }
-      it { should == nil }
+      it { should == {} }
     end
   end
   
+  context "image_dimensions_style" do
+    subject { image_dimensions_style({width: 250, height: 300})}
+    it { should == "max-width: 250px;width: 250px; height: 300px;"}
+  end
 end

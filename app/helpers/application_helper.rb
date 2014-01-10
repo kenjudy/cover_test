@@ -21,12 +21,18 @@ module ApplicationHelper
     '%.2f' % (File.size("#{Rails.root}#{COVER_IMAGE_DIR}/#{filename}").to_f / 1024)
   end
   
-  def image_dimensions(filename, delim = "")
+  def image_dimensions(filename)
     begin
       exifr = EXIFR::JPEG.new("#{Rails.root}#{COVER_IMAGE_DIR}/#{filename}")
-      "#{delim}#{exifr.width} x #{exifr.height}"
+      { width: exifr.width, height: exifr.height}
     rescue
+      {}
     end
+  end
+  
+  def image_dimensions_style(dim)
+    return if dim == {}
+    "max-width: #{dim[:width]}px;width: #{dim[:width]}px; height: #{dim[:height]}px;"
   end
   
   def filter_label(filter, nil_case = "None")

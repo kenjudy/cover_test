@@ -3,7 +3,7 @@ class CoversController < ApplicationController
   before_filter :set_image_filter
 
   def index
-    @files = original_covers
+    @files = new_files({quality: SELECTABLE_QUALITIES.last})
   end
 
 
