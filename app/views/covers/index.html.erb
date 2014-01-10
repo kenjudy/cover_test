@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="span12">
+<div class="span12">
     <div id="masonry-container" class="transitions-enabled clearfix">
         <% @files.shuffle.each do |cover| %>
           <%= render "cover", cover: cover, masonry: true %>

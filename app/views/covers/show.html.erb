@@ -1,10 +1,10 @@
 <div class="row">
   <%= render "sidebar" %>
   <div class="span10">
-    <div id="myCarousel" class="carousel slide">
+    <div id="side-by-side" class="carousel slide">
       <ol class="carousel-indicators">
         <% (0..@files.length).each do |i| %>
-          <li data-target="#myCarousel" data-slide-to="<%= i %>" class=""></li>
+          <li data-target="#side-by-side" data-slide-to="<%= i %>" class=""></li>
         <% end %>
       </ol>
       <div class="carousel-inner">
@@ -19,7 +19,7 @@
             </div>
         <% end %>
       </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    <a class="left carousel-control" href="#side-by-side" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#side-by-side" data-slide="next">›</a>
   </div>
 </div>

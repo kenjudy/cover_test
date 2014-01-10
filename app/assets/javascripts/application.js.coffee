@@ -30,4 +30,3 @@ $(window).load ->
       "isFitWidth": true
       "itemSelector" : ".box > div"
       "columnWidth" : ".box > div"
-    

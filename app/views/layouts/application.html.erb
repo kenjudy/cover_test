@@ -71,12 +71,20 @@
       </div>
     </div>
     <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="alert alert-info">
+            This cover test is only intended to compare image quality <i class="icon-picture"></i> &ndash; not load times <i class="icon-time"></i>. Images are not served from a CDN <i class="icon-cloud"></i>.
+          </div>
+        </div>
+      </div>
+      
       <%= yield %>
     </div>
       <footer>
       </footer>
 
     </div> <!-- /container -->
-    <script>$("img").lazyload();</script>
+    <script>$("img").lazyload({threshold: 200, skip_invisible : false});</script>
   </body>
 </html>
