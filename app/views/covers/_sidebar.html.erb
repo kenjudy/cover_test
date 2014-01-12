@@ -1,16 +1,19 @@
-<div class="span2">
+<div class="span3">
   <ul class="nav nav-pills nav-stacked affix visible-desktop">
     <% if @quality %>
-      <h2>Quality <%= @quality.to_i.to_s %></h2>
+      <h3>Quality <%= @quality.to_i.to_s %></h3>
       <hr />
     <% end %>
     <% if @isbn13 %>
-      <h2><%= @isbn13 %></h2>
+      <h3><%= @isbn13 %></h3>
       <hr />
     <% end %>
     <h3>Filters</h3>
     <% image_filters.each do |filter| %>
       <li class="<%= 'active' if is_current_filter(filter) %>" ><%= link_to(filter_label(filter), @quality ? quality_path(filter: filter) : cover_path(filter: filter)) %></li>
+    <% end %>
+    <% if @isbn13 %>
+      <li class="<%= 'active' if is_current_filter(:all) %>"><%= link_to("All", @quality ? quality_path(filter: :all) : cover_path(filter: :all), tabindex: "-1") %></li>
     <% end %>
   </ul>
 </div>
@@ -26,6 +29,7 @@
                <%= link_to(filter_label(filter), @quality ? quality_path(filter: filter) : cover_path(filter: filter), tabindex: "-1") %>
              </li>
             <% end %>
+            <li class="<%= 'disabled' if is_current_filter(:all) %>"><%= link_to("All", @quality ? quality_path(filter: :all) : cover_path(filter: :all), tabindex: "-1") %></li>
           </ul>
         </div>
       </div>

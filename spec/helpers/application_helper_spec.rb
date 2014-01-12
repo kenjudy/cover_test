@@ -1,11 +1,16 @@
 require 'spec_helper'
   
 describe ApplicationHelper do
-  let(:filename) { 'auto_enhance_cvr9781231231230_9781231231230_100_lg.jpg' }
+  let(:filename) { 'cvr9781231231230_9781231231230_auto_enhance_100_lg.jpg' }
   
   context "isbn_from_filename" do
     subject { isbn_from_filename(filename)}
     it { should == '9781231231230'}
+  end
+  
+  context "filter_from_filename" do
+    subject { filter_from_filename(filename)}
+    it { should == 'Auto enhance'}
   end
   
   context "quality_from_filename" do

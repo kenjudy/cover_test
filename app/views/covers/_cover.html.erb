@@ -4,6 +4,13 @@
 <div style="<%= 'width: #{dim[:width]} if dim[:width]' %>;text-align: center;">
     <%= link_to(image_tag("covers/#{cover}", style: image_dimensions_style(dim)), cover_path(isbn_from_filename(cover))) %>
     <noscript><%= link_to(x_image_tag("covers/#{cover}", style: image_dimensions_style(dim)), cover_path(isbn_from_filename(cover))) %></noscript>
-    <p><%= quality_from_filename(cover) || 'original' %> | <span class="hidden-phone"> <%= "#{dim[:width]} x #{dim[:height]}" if dim[:width] %> | </span><strong><%= filesize(cover) %> KB</strong></p>
+    <p>
+      <% if @filter == :all %>
+        <%= filter_from_filename(cover) %></br>
+      <% end %>
+      <%= quality_from_filename(cover) || 'original' %> | 
+      <span class="hidden-phone"> <%= "#{dim[:width]} x #{dim[:height]}" if dim[:width] %> | 
+      </span><strong><%= filesize(cover) %> KB</strong>
+    </p>
   </div>
 <% end %>

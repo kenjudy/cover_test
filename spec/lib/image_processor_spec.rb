@@ -13,6 +13,8 @@ describe ImageProcessor do
 
   
   before do
+    ImageProcessor.stub(:puts)
+    
     ImageProcessor.stub(get_image_exif: image_exif)
     ImageProcessor.stub(:drop_cover_image)
     

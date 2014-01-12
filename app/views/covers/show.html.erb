@@ -1,6 +1,6 @@
 <div class="row">
   <%= render "sidebar" %>
-  <div class="span10">
+  <div class="span9">
     <div id="side-by-side" class="carousel slide">
       <ol class="carousel-indicators">
         <% (0..@files.length).each do |i| %>
@@ -19,7 +19,22 @@
             </div>
         <% end %>
       </div>
+      <%= link_to("all qualities", "#", class: " pull-right show-all") %>
     <a class="left carousel-control" href="#side-by-side" data-slide="prev">‹</a>
     <a class="right carousel-control" href="#side-by-side" data-slide="next">›</a>
+  </div>
+</div>
+<div class="row">
+  <div class="span9 offset3">
+    <div class="show-all">
+      <% @files.each do |cover| %>
+        <span class="new-file" style="display:inline-block">
+          <%= render "cover", cover: cover %>
+        </span>
+      <% end %>
+      <span class="original" style="display:inline-block">
+        <%= render "cover", cover: @original %>
+      </span>
+    </div>
   </div>
 </div>

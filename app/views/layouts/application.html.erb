@@ -36,7 +36,7 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
+  <body class="<%= @filter.to_s %>">
 
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
@@ -85,6 +85,16 @@
       </footer>
 
     </div> <!-- /container -->
-    <script>$("img").lazyload({threshold: 200, skip_invisible : false});</script>
+    <script>
+    $("img").lazyload({threshold: 200, skip_invisible : false});
+    
+    $("a.show-all").click(function(event) {
+      event.preventDefault();
+      $("#side-by-side").hide();
+      $("div.show-all").show();
+      $("a.show-all").hide();
+      return false;
+    });
+    </script>
   </body>
 </html>

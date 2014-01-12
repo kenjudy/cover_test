@@ -1,16 +1,16 @@
 <div class="row">
   <%= render "sidebar" %>
-  <div class="span9 offset1">
-    <table class="quality">
+  <div class="span9">
+    <table class="table quality">
       <% @files.each do | original, new_file| %>
-      <tr>
-        <td>
-          <%= render "cover", cover: original %>
-        </td>
-        <td>
-          <%= render "cover", cover: new_file %>
-        </td>
-      </tr>
+        <tr>
+          <td>
+            <%= render "cover", cover: original %>
+          </td>
+          <td>
+            <%= render "cover", cover: new_file %>
+          </td>
+        </tr>
       <% end %>
     </table>
   </div>

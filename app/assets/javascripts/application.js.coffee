@@ -24,9 +24,19 @@
 #= require masonry/modernizr-transitions
 #= require jquery.lazyload
 
+
 $(window).load ->
   if $("#masonry-container").length
     $("#masonry-container").masonry
       "isFitWidth": true
       "itemSelector" : ".box > div"
       "columnWidth" : ".box > div"
+
+jQuery ->
+  $("a.show-all").click (event) ->
+    event.preventDefault()
+    $("#side-by-side").hide()
+    $("div.show-all").show()
+    $("a.show-all").hide()
+    return false
+

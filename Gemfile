@@ -48,6 +48,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'binding_of_caller'
+  gem 'pry-remote'
 end
 
 # Use ActiveModel has_secure_password
