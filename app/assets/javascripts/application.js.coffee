@@ -32,11 +32,49 @@ $(window).load ->
       "itemSelector" : ".box > div"
       "columnWidth" : ".box > div"
 
-jQuery ->
-  $("a.show-all").click (event) ->
-    event.preventDefault()
-    $("#side-by-side").hide()
-    $("div.show-all").show()
-    $("a.show-all").hide()
-    return false
-
+class window.FileSizeCalculator
+  constructor: () ->
+    @original = @scrapeValues($(".original .filesize"))
+    @new = @scrapeValues($(".new .filesize"))
+    @count_original = @original.length
+    @count_new = @original.length
+    @total_original = @sumSizesForElement(@original)
+    @total_new = @sumSizesForElement(@new)
+    @difference = (@total_original - @total_new).toFixed(2)
+    @mean_new = @arithmaticMean(@total_new, @count_new)
+    @mean_original = @arithmaticMean(@total_original, @count_original)
+    @stdev_new = @standardDeviation(@new, @mean_new)
+    @stdev_original = @standardDeviation(@original, @mean_original)
+    @max_new = @max(@new)
+    @max_original = @max(@original)
+    @min_new = @min(@new)
+    @min_original = @min(@original)
+    
+  scrapeValues: (nodes) ->
+    array = new Array
+    nodes.each (index, node) ->
+      array.push(parseFloat(node.innerText))
+    array
+    
+  sumSizesForElement: (elements) ->
+    total = 0
+    total += filesize for filesize in elements
+    total.toFixed(2)
+    
+  arithmaticMean: (sum, count) ->
+    (sum / count).toFixed(2)
+    
+  standardDeviation: (elements, mean) ->
+    sum = 0
+    length = elements.length
+    i = 0
+    sum +=  Math.pow(filesize - mean, 2) for filesize in elements
+    (Math.pow sum / length, 0.5).toFixed(2)
+    
+  max: (elements) ->
+    Math.max.apply(Math, elements)
+  
+  min: (elements) ->
+    Math.min.apply(Math, elements)
+      
+      

@@ -1,6 +1,46 @@
 <div class="row">
   <%= render "sidebar" %>
   <div class="span9">
+    <table class="table table-condensed table-striped table-bordered stats">
+      <caption>Summary of key statistics with quality <%= @quality %> and filter <%= @filter.to_s.humanize %></caption>
+      <thead>
+        <th></th>
+        <th>Original Covers</th>
+        <th></th>
+        <th>New Covers</th>
+        <th></th>
+      </thead>
+      <tr>
+        <td class="row-header">Count of Images</td>
+        <td class="original count"></td><td>
+        <td class="new count"></td></td><td>
+      </tr>
+      <tr>
+        <td class="row-header">Total Size</td>
+        <td class="original total"></td><td class="unit-label">KB</td>
+        <td class="new total"></td><td class="unit-label">KB</td>
+      </tr>
+      <tr>
+        <td class="row-header">Average size</td>
+        <td class="original mean"></td><td class="unit-label">KB</td>
+        <td class="new mean"></td><td class="unit-label">KB</td>
+      </tr>
+      <tr>
+        <td class="row-header">Min</td>
+        <td class="original min"></td><td class="unit-label">KB</td>
+        <td class="new min"></td><td class="unit-label">KB</td>
+      </tr>
+      <tr>
+        <td class="row-header">Max</td>
+        <td class="original max"></td><td class="unit-label">KB</td>
+        <td class="new max"></td><td class="unit-label">KB</td>
+      </tr>
+      <tr>
+        <td class="row-header">Standard Dev</td>
+        <td class="original stdev"></td></td><td>
+        <td class="new stdev"></td></td><td>
+      </tr>
+    </table>
     <table class="table quality">
       <% @files.each do | original, new_file| %>
         <tr>
@@ -15,3 +55,20 @@
     </table>
   </div>
 </div>
+<script>
+  if ($(".stats").length > 0) {
+    stats = new FileSizeCalculator
+    $(".stats .original.count").text(stats.count_original)
+    $(".stats .new.count").text(stats.count_new)
+    $(".stats .original.total").text(stats.total_original)
+    $(".stats .new.total").text(stats.total_new)
+    $(".stats .original.mean").text(stats.mean_original)
+    $(".stats .new.mean").text(stats.mean_new)
+    $(".stats .original.min").text(stats.min_original)
+    $(".stats .new.min").text(stats.min_new)
+    $(".stats .original.max").text(stats.max_original)
+    $(".stats .new.max").text(stats.max_new)
+    $(".stats .original.stdev").text(stats.stdev_original)
+    $(".stats .new.stdev").text(stats.stdev_new)
+  }
+</script>
