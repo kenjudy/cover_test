@@ -9,6 +9,7 @@
 
 # Ignore cover images
 /public/images/covers
+/public/images/masters
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -19,3 +20,6 @@
 /tmp
 *.keep
 *.DS_Store
+
+#Ignore private config files
+/config/*.yml
