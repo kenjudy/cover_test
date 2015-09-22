@@ -6,7 +6,7 @@ module AppConstants
   COVER_IMAGE_DROP_PATH = "#{Rails.root}/tmp/covers/"
 
   S3_CONFIG = YAML::load(File.open("#{Rails.root}/config/s3.yml"))
-  S3_BUCKET = "sns-dev-test-2"
+  S3_BUCKET = S3_CONFIG["bucket"]
   S3_ACCESS_KEY_ID = S3_CONFIG["access_key_id"]
   S3_SECRET_ACCESS_KEY = S3_CONFIG["secret_access_key"]
   S3_COVER_IMAGES_PATH = "spikes/blitline-image-quality/"

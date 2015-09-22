@@ -1,0 +1,7 @@
+Tue, 22 Sep 2015 16:46:23 -0400
+README.rdoc	Tue, 22 Sep 2015 16:22:44 -0400
+app/controllers/application_controller.rb	Tue, 22 Sep 2015 16:22:44 -0400
+app/controllers/covers_controller.rb	Tue, 22 Sep 2015 16:22:44 -0400
+app/helpers/application_helper.rb	Tue, 22 Sep 2015 16:22:44 -0400
+lib/image_processor.rb	Tue, 22 Sep 2015 16:22:44 -0400
+lib/move_to_s3.rb	Tue, 22 Sep 2015 16:22:44 -0400

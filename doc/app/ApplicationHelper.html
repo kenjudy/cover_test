@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-cover_image_dir">#cover_image_dir</a>
+    
+    <li><a href="#method-i-filesize">#filesize</a>
+    
+    <li><a href="#method-i-filter_from_filename">#filter_from_filename</a>
+    
+    <li><a href="#method-i-filter_label">#filter_label</a>
+    
+    <li><a href="#method-i-image_dimensions">#image_dimensions</a>
+    
+    <li><a href="#method-i-image_dimensions_style">#image_dimensions_style</a>
+    
+    <li><a href="#method-i-image_filters">#image_filters</a>
+    
+    <li><a href="#method-i-is_current_filter">#is_current_filter</a>
+    
+    <li><a href="#method-i-isbn_from_filename">#isbn_from_filename</a>
+    
+    <li><a href="#method-i-quality_from_filename">#quality_from_filename</a>
+    
+    <li><a href="#method-i-selectable_qualities">#selectable_qualities</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./UploadToCdnStrategy.html">UploadToCdnStrategy</a>
+  
+    <li><a href="./UploadToCdnStrategy/MoveToS3.html">UploadToCdnStrategy::MoveToS3</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CoversController.html">CoversController</a>
+  
+    <li><a href="./ImageProcessor.html">ImageProcessor</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-cover_image_dir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cover_image_dir</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cover_image_dir-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cover_image_dir</span>
+  <span class="ruby-constant">AppConstants</span><span class="ruby-operator">::</span><span class="ruby-constant">COVER_IMAGE_DIR</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cover_image_dir-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cover_image_dir-method -->
+
+    
+      <div id="method-i-filesize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filesize</span><span
+            class="method-args">(filename)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="filesize-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">filesize</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-string">'%.2f'</span> <span class="ruby-operator">%</span> (<span class="ruby-constant">File</span>.<span class="ruby-identifier">size</span>(<span class="ruby-node">&quot;#{Rails.root}#{cover_image_dir}/#{filename}&quot;</span>).<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">1024</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- filesize-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- filesize-method -->
+
+    
+      <div id="method-i-filter_from_filename" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter_from_filename</span><span
+            class="method-args">(filename)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="filter_from_filename-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">filter_from_filename</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">filter</span> = <span class="ruby-identifier">filename</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/.*\d{13,13}_([\w_]+)_\d{3}.*$/</span>, <span class="ruby-string">'\1'</span>).<span class="ruby-identifier">humanize</span>
+  <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;.jpg&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">filter</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- filter_from_filename-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- filter_from_filename-method -->
+
+    
+      <div id="method-i-filter_label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter_label</span><span
+            class="method-args">(filter, nil_case = "None")</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="filter_label-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">filter_label</span>(<span class="ruby-identifier">filter</span>, <span class="ruby-identifier">nil_case</span> = <span class="ruby-string">&quot;None&quot;</span>)
+  <span class="ruby-identifier">filter</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">filter</span> <span class="ruby-operator">!=</span> <span class="ruby-value">:no_op</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">filter</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">humanize</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">nil_case</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- filter_label-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- filter_label-method -->
+
+    
+      <div id="method-i-image_dimensions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">image_dimensions</span><span
+            class="method-args">(filename)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="image_dimensions-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">image_dimensions</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">exifr</span> = <span class="ruby-constant">EXIFR</span><span class="ruby-operator">::</span><span class="ruby-constant">JPEG</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{Rails.root}#{cover_image_dir}/#{filename}&quot;</span>)
+    { <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-identifier">exifr</span>.<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-identifier">exifr</span>.<span class="ruby-identifier">height</span>}
+  <span class="ruby-keyword">rescue</span>
+    {}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- image_dimensions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- image_dimensions-method -->
+
+    
+      <div id="method-i-image_dimensions_style" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">image_dimensions_style</span><span
+            class="method-args">(dim)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="image_dimensions_style-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">image_dimensions_style</span>(<span class="ruby-identifier">dim</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dim</span> <span class="ruby-operator">==</span> {}
+  <span class="ruby-node">&quot;max-width: #{dim[:width]}px;width: #{dim[:width]}px; height: #{dim[:height]}px;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- image_dimensions_style-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- image_dimensions_style-method -->
+
+    
+      <div id="method-i-image_filters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">image_filters</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="image_filters-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">image_filters</span>
+  <span class="ruby-constant">AppConstants</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_FILTERS</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- image_filters-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- image_filters-method -->
+
+    
+      <div id="method-i-is_current_filter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_current_filter</span><span
+            class="method-args">(filter)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_current_filter-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_current_filter</span>(<span class="ruby-identifier">filter</span>)
+  <span class="ruby-identifier">filter</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@filter</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">filter</span> <span class="ruby-operator">==</span> <span class="ruby-value">:no_op</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@filter</span>.<span class="ruby-identifier">nil?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_current_filter-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_current_filter-method -->
+
+    
+      <div id="method-i-isbn_from_filename" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">isbn_from_filename</span><span
+            class="method-args">(filename)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="isbn_from_filename-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">isbn_from_filename</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">filename</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[\w_]+(\d{13,13})_.*/</span>, <span class="ruby-string">'\1'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- isbn_from_filename-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- isbn_from_filename-method -->
+
+    
+      <div id="method-i-quality_from_filename" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quality_from_filename</span><span
+            class="method-args">(filename)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="quality_from_filename-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">quality_from_filename</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-identifier">quality</span> = <span class="ruby-identifier">filename</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/.*_(\d\d\d)_lg\.jpg/</span>, <span class="ruby-string">'\1'</span>)
+  <span class="ruby-identifier">quality</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">quality</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- quality_from_filename-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- quality_from_filename-method -->
+
+    
+      <div id="method-i-selectable_qualities" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selectable_qualities</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selectable_qualities-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selectable_qualities</span>
+  <span class="ruby-constant">AppConstants</span><span class="ruby-operator">::</span><span class="ruby-constant">SELECTABLE_QUALITIES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selectable_qualities-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selectable_qualities-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
